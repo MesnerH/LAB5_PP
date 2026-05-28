@@ -28,3 +28,26 @@ def test_multiply(a, b, expected):
 def test_divide(a, b, expected):
     result = utils.divide(a, b)
     assert result == expected
+
+
+def test_to_binary_valid():
+    """poprawnosc konwersji liczb"""
+    assert utils.to_binary(0) == "0b0"
+    assert utils.to_binary(5) == "0b101"
+    assert utils.to_binary(100) == "0b1100100"
+
+
+def test_to_binary_out_of_range():
+    """sprawdzanie zakresu od 0 do 100"""
+    with pytest.raises(ValueError):
+        utils.to_binary(-1)
+    with pytest.raises(ValueError):
+        utils.to_binary(101)
+
+
+def test_to_binary_not_integer():
+    """czy liczba jest naturalna"""
+    with pytest.raises(TypeError):
+        utils.to_binary(10.5)
+    with pytest.raises(TypeError):
+        utils.to_binary("5")
